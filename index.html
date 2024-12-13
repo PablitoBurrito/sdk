@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weryfikator Paczek</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input, button {
+            margin-bottom: 15px;
+        }
+        .result {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weryfikator Paczek</h1>
+
+    <label for="input-text">Wprowadź tekst:</label>
+    <input type="text" id="input-text" placeholder="np. tetra.all.1.0.2.2.0">
+
+    <button onclick="processInput()">Sprawdź</button>
+
+    <label for="output-text">Wynik:</label>
+    <input type="text" id="output-text" readonly>
+
+    <script>
+        function processInput() {
+            const inputText = document.getElementById('input-text').value;
+            const outputField = document.getElementById('output-text');
+
+            // Usunięcie pustych znaków i wyodrębnienie oraz połączenie cyfr
+            const sanitizedInput = inputText.replace(/\s/g, '');
+            const digits = sanitizedInput.match(/\d+/g)?.join('') || '';
+
+            if (sanitizedInput.includes('Tetra.upd.all.1.0.2.2.0')) {
+                outputField.value = "Podany przez ciebie numer paczki oznacza pobraną już paczkę SDK - zignoruj inne wskazania weryfikatora i Zleć IS D+2 (VIP bieżąca)";
+            } else if (digits) {
+                const numericValue = parseInt(digits, 10);
+                if (numericValue <= 10220) {
+                    outputField.value = "Wystaw paczkę SDK";
+                } else {
+                    outputField.value = "Zleć IS D+2 (VIP bieżąca)";
+                }
+            } else {
+                outputField.value = "Wprowadź poprawne dane.";
+            }
+        }
+    </script>
+</body>
+</html>
