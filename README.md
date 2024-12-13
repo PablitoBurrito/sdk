@@ -1,0 +1,2 @@
+# sdk
+Weryfikator paczek SDK
