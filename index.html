@@ -39,10 +39,10 @@
             const outputField = document.getElementById('output-text');
 
             // Usunięcie pustych znaków i wyodrębnienie oraz połączenie cyfr
-            const sanitizedInput = inputText.replace(/\s/g, '');
+            const sanitizedInput = inputText.replace(/\s/g, '').toLowerCase();
             const digits = sanitizedInput.match(/\d+/g)?.join('') || '';
 
-            if (sanitizedInput.includes('Tetra.upd.all.1.0.2.2.0')) {
+            if (sanitizedInput.includes('tetra.upd.all.1.0.2.2.0')) {
                 outputField.value = "Podany przez ciebie numer paczki oznacza pobraną już paczkę SDK - zignoruj inne wskazania weryfikatora i Zleć IS D+2 (VIP bieżąca)";
             } else if (digits) {
                 const numericValue = parseInt(digits, 10);
