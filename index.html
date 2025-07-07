@@ -35,25 +35,25 @@
 
     <script>
         function processInput() {
-            const inputText = document.getElementById('input-text').value;
-            const outputField = document.getElementById('output-text');
+    const inputText = document.getElementById('input-text').value;
+    const outputField = document.getElementById('output-text');
 
-            // Usunięcie pustych znaków i wyodrębnienie oraz połączenie cyfr
-            const sanitizedInput = inputText.replace(/\s/g, '').toLowerCase();
-            const digits = sanitizedInput.match(/\d+/g)?.join('') || '';
+    // Usunięcie pustych znaków i wyodrębnienie oraz połączenie cyfr
+    const sanitizedInput = inputText.replace(/\s/g, '').toLowerCase();
+    const digits = sanitizedInput.match(/\d+/g)?.join('') || '';
 
-            if (digits) {
-                const numericValue = parseInt(digits, 10);
-                if (numericValue < 11200) {
-                    outputField.value = "Sprawdź czy terminal pobrał paczkę Tetra.base.1.6.5.0.1 lub nowszą. Jeśli nie - wystaw najnowszą paczkę BASE";
-                } else {
-                    outputField.value = "Wystaw paczkę OSR";
-                }
-            } 
-            } else {
-                outputField.value = "Wprowadź poprawne dane.";
-            }
+    if (digits) {
+        const numericValue = parseInt(digits, 10);
+        if (numericValue < 11200) {
+            outputField.value = "Sprawdź czy terminal pobrał paczkę Tetra.base.1.6.5.0.1 lub nowszą. Jeśli nie - wystaw najnowszą paczkę BASE";
+        } else {
+            outputField.value = "Wystaw paczkę OSR";
         }
+    } else {
+        outputField.value = "Wprowadź poprawne dane.";
+    }
+}
+
     </script>
 </body>
 </html>
