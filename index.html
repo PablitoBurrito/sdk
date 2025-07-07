@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weryfikator SDK</title>
+    <title>Weryfikator Paczek</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,9 +23,9 @@
     </style>
 </head>
 <body>
-    <h1>Weryfikator SDK</h1>
+    <h1>Weryfikator Paczek</h1>
 
-    <label for="input-text">Wprowadź numer paczki magazynowej:</label>
+    <label for="input-text">Wprowadź tekst:</label>
     <input type="text" id="input-text" placeholder="np. tetra.all.1.0.2.2.0">
 
     <button onclick="processInput()">Sprawdź</button>
@@ -42,15 +42,14 @@
             const sanitizedInput = inputText.replace(/\s/g, '').toLowerCase();
             const digits = sanitizedInput.match(/\d+/g)?.join('') || '';
 
-            if (sanitizedInput === 'tetra.upd.all.1.0.2.2.0') {
-                outputField.value = "Podany przez ciebie numer paczki oznacza pobraną już paczkę SDK - zignoruj inne wskazania weryfikatora i Zleć IS D+2 (VIP bieżąca)";
-            } else if (digits) {
+            if (digits) {
                 const numericValue = parseInt(digits, 10);
-                if (numericValue <= 10220) {
-                    outputField.value = "Wystaw paczkę SDK";
+                if (numericValue < 11200) {
+                    outputField.value = "Sprawdź czy terminal pobrał paczkę Tetra.base.1.6.5.0.1 lub nowszą. Jeśli nie - wystaw najnowszą paczkę BASE";
                 } else {
-                    outputField.value = "Zleć IS D+2 (VIP bieżąca)";
+                    outputField.value = "Wystaw paczkę OSR";
                 }
+            } 
             } else {
                 outputField.value = "Wprowadź poprawne dane.";
             }
